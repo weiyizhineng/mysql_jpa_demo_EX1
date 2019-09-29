@@ -1,8 +1,9 @@
 package com.weiyizhineng.mysql_jpa_demo.web;
 
+import com.weiyizhineng.mysql_jpa_demo.dao.Repository.UserInfoRepository;
 import com.weiyizhineng.mysql_jpa_demo.dao.Repository.UserRepository;
 import com.weiyizhineng.mysql_jpa_demo.dao.entity.User;
-//import com.weiyizhineng.mysql_jpa_demo.dao.entity.user_info;
+import com.weiyizhineng.mysql_jpa_demo.dao.entity.Userinfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(path = "/demo")
 public class UserController {
     @Autowired
+    private UserInfoRepository userInfoRepository;
+    @Autowired
     private UserRepository userRepository;
+
     @GetMapping(path = "/add")
     public  void addNewUser(@RequestParam String name,@RequestParam String email)
     {
@@ -36,5 +40,11 @@ public class UserController {
     @ResponseBody
     public Iterable<User> getAllUserInfo(){
         return  userRepository.findAll();
+    }
+
+    @GetMapping(path = "/userinfo")
+    @ResponseBody
+    public Iterable<Userinfo> getAllTsUserInfo(){
+        return  userInfoRepository.findAll();
     }
 }
