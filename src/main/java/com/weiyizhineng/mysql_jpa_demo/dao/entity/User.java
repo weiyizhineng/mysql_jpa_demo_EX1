@@ -1,16 +1,14 @@
 package com.weiyizhineng.mysql_jpa_demo.dao.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long revision;
-  private String createdBy;
+  @Column(name = "CREATED_BY")
+  private String CREATED_BY;
   private java.sql.Timestamp createdTime;
   private String updatedBy;
   private java.sql.Timestamp updatedTime;
@@ -29,11 +27,11 @@ public class User {
 
 
   public String getCreatedBy() {
-    return createdBy;
+    return CREATED_BY;
   }
 
   public void setCreatedBy(String createdBy) {
-    this.createdBy = createdBy;
+    this.CREATED_BY = createdBy;
   }
 
 
