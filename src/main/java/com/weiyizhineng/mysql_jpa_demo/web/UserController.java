@@ -1,7 +1,9 @@
 package com.weiyizhineng.mysql_jpa_demo.web;
 
+import com.weiyizhineng.mysql_jpa_demo.dao.Repository.TestModelRepository;
 import com.weiyizhineng.mysql_jpa_demo.dao.Repository.UserInfoRepository;
 import com.weiyizhineng.mysql_jpa_demo.dao.Repository.UserRepository;
+import com.weiyizhineng.mysql_jpa_demo.dao.entity.TestModel;
 import com.weiyizhineng.mysql_jpa_demo.dao.entity.User;
 import com.weiyizhineng.mysql_jpa_demo.dao.entity.Userinfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,8 @@ public class UserController {
     private UserInfoRepository userInfoRepository;
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private TestModelRepository testModelRepository;
     @GetMapping(path = "/add")
     public  void addNewUser(@RequestParam String name,@RequestParam String email)
     {
@@ -46,5 +49,10 @@ public class UserController {
     @ResponseBody
     public Iterable<Userinfo> getAllTsUserInfo(){
         return  userInfoRepository.findAll();
+    }
+    @GetMapping(path = "/TestModel")
+    @ResponseBody
+    public Iterable<TestModel> getAllTestmodel(){
+        return  testModelRepository.findAll();
     }
 }
